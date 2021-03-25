@@ -22,6 +22,18 @@ namespace rest.Net5Api.Controllers
             return BadRequest("Bad Input");
         }
 
+
+        [HttpGet("multi/{firstNumber}/{secondNumber}")]
+        public ActionResult multi(string firstNumber, string secondNumber)
+        {
+            if (Isnumeric(firstNumber) && Isnumeric(secondNumber))
+            {
+                var multi = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
+                return Ok(multi.ToString());
+            }
+            return BadRequest("Bad Input");
+        }
+
         private decimal ConvertToDecimal(string strNumber)
         {
             decimal decimalValue = 0;
